@@ -3,3 +3,4 @@
 
 # Ignore packages directory
 vendor
+.env
