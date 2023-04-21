@@ -1,9 +1,9 @@
 {
-    "name": "mggflow/aton-web-dev-test-task-1",
+    "name": "deusagnis/aton-web-dev-test-task-1",
     "type": "project",
     "autoload": {
         "psr-4": {
-            "Aton\\WebDev\\TestTask1\\": "src/"
+            "App\\": "app/"
         }
     },
     "authors": [
