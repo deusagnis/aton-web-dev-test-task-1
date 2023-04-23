@@ -3,6 +3,7 @@
 use App\Config\CreateConfig;
 use App\Database\CreateConnection;
 use App\Env\LoadEnv;
+use App\Models\Product;
 use MGGFLOW\ExceptionManager\ManageException;
 
 require_once dirname(__DIR__) . DIRECTORY_SEPARATOR . 'bootstrap.php';
@@ -12,7 +13,7 @@ try {
     $conf = CreateConfig::create(ROOT_DIR . DIRECTORY_SEPARATOR . 'config');
     $connection = CreateConnection::create($conf);
 
-    $creation = $connection->create('products', [
+    $creation = $connection->create(Product::TABLE_NAME, [
         'id' => [
             'INT',
             'UNSIGNED',
@@ -44,9 +45,9 @@ try {
         ->fill();
 
     echo 'Successful Database Migration';
-} catch (\Throwable $e) {
+} catch (Throwable $e) {
     if (method_exists($e, 'toArray')) {
-        echo '<pre>' . json_encode($e->toArray()) . '</pre>';
+        echo '<pre>' . json_encode($e->toArray(false)) . '</pre>';
     } else {
         throw $e;
     }

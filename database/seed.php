@@ -3,6 +3,7 @@
 use App\Config\CreateConfig;
 use App\Database\CreateConnection;
 use App\Env\LoadEnv;
+use App\Models\Product;
 use MGGFLOW\ExceptionManager\ManageException;
 
 require_once dirname(__DIR__) . DIRECTORY_SEPARATOR . 'bootstrap.php';
@@ -14,11 +15,11 @@ try {
     $conf = CreateConfig::create(ROOT_DIR . DIRECTORY_SEPARATOR . 'config');
     $connection = CreateConnection::create($conf);
 
-    $counter = $connection->count('products');
+    $counter = $connection->count(Product::TABLE_NAME);
 
     if ($counter === null) throw ManageException::build()
         ->log()->error()->b()
-        ->desc()->failed('Counting Products')
+        ->desc()->failed('Products Counting')
         ->context($connection->info(), 'info')
         ->context($connection->last(), 'query')->b()
         ->fill();
@@ -34,19 +35,19 @@ try {
         ];
     }
 
-    $inserting = $connection->insert('products', $products);
+    $inserting = $connection->insert(Product::TABLE_NAME, $products);
     if ($inserting === null) throw ManageException::build()
         ->log()->error()->b()
-        ->desc()->failed('Inserting Products')
+        ->desc()->failed('Products Inserting')
         ->context($connection->info(), 'info')
         ->context($connection->last(), 'query')->b()
         ->fill();
 
     echo 'Successful Database Seeding';
-} catch (\Throwable $e) {
+} catch (Throwable $e) {
     if (method_exists($e, 'toArray')) {
-        echo '<pre>' . json_encode($e->toArray()) .'</pre>';
-    }else{
+        echo '<pre>' . json_encode($e->toArray(false)) . '</pre>';
+    } else {
         throw $e;
     }
 }
