@@ -48,7 +48,6 @@ try {
     if (method_exists($e, 'toArray')) {
         echo '<pre>' . json_encode($e->toArray()) . '</pre>';
     } else {
-        var_dump('dd');
         throw $e;
     }
 }
