@@ -8,10 +8,7 @@ use MGGFLOW\ExceptionManager\ManageException;
 
 class FindProducts
 {
-    const PRODUCTS_COUNT = [
-        'min' => 10,
-        'max' => 25
-    ];
+    const AVAILABLE_COUNTS = [10, 15, 25];
 
     const MIN_PRODUCTS_OFFSET = 0;
     const MAX_QUERY_LENGTH = 512;
@@ -42,7 +39,7 @@ class FindProducts
     {
         $this->searchParams = [
             'offset' => $_GET['offset'] ?? 0,
-            'count' => $_GET['count'] ?? self::PRODUCTS_COUNT['min'],
+            'count' => $_GET['count'] ?? self::AVAILABLE_COUNTS[0],
             'sortBy' => $_GET['sortBy'] ?? null,
             'query' => $_GET['q'] ?? null
         ];
@@ -66,13 +63,12 @@ class FindProducts
             ->desc()->invalid('Offset Parameter')->b()
             ->fill();
 
-        if ($this->searchParams['count'] < self::PRODUCTS_COUNT['min']
-            || $this->searchParams['count'] > self::PRODUCTS_COUNT['max']
-        ) throw ManageException::build()
-            ->log()->warning()->b()
-            ->desc()->invalid('Count Parameter')
-            ->context($this->searchParams)->b()
-            ->fill();
+        if (!in_array($this->searchParams['count'], self::AVAILABLE_COUNTS))
+            throw ManageException::build()
+                ->log()->warning()->b()
+                ->desc()->invalid('Count Parameter')
+                ->context($this->searchParams)->b()
+                ->fill();
 
         if (($this->searchParams['sortBy'] !== null)) {
             if (!is_array($this->searchParams['sortBy'])
@@ -136,7 +132,8 @@ class FindProducts
     {
         return [
             'count' => $this->productsCount,
-            'items' => $this->products
+            'items' => $this->products,
+            'search' => $this->searchParams
         ];
     }
 }
