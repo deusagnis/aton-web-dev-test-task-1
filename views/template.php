@@ -12,8 +12,15 @@ return function (string $content, string $title = 'ATON-TEST', string $extraHead
               crossorigin="anonymous">
         <?= $extraHead ?>
     </head>
-    <body>
-    <?= $content ?>
+    <body class="bg-light">
+    <div class="container min-vh-100">
+        <?= $content ?>
+    </div>
+    <div class="row mx-auto">
+        <div class="col-auto mx-auto small">
+            <a class="link-success" href="https://github.com/deusagnis/aton-web-dev-test-task-1">Source on GitHub</a>
+        </div>
+    </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
             crossorigin="anonymous"></script>
