@@ -18,11 +18,11 @@ try {
     $connection = CreateConnection::create($conf);
 
     $search = new FindProducts($connection);
-    $products = $search->find();
+    $productsResponse = $search->find();
 
     $rendering = new RenderPage(VIEWS_PATH);
     $page = new RenderProducts(VIEWS_PATH, $rendering);
-    $page->setParams($products)->render();
+    $page->setParams($productsResponse)->render();
 
 } catch (Throwable $e) {
     $rendering = new RenderPage(VIEWS_PATH);
