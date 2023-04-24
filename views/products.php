@@ -2,12 +2,12 @@
 return function (int $productsCount, $offset, $count, $query, $sortBy) {
     ?>
     <div class="row mx-auto">
-        <div class="col col-md-7 mx-auto text-center">
+        <div class="col col-md-7 col-xxl-9 mx-auto text-center">
             <h3>Товары</h3>
         </div>
     </div>
     <div class="row mx-auto">
-        <div class="col col-md-7 mx-auto">
+        <div class="col col-md-7 col-xxl-9 mx-auto">
             <form class="input-group mb-1" id="globalSearchForm">
                 <input hidden type="number" value="<?= $offset ?>" id="serverOffsetInput">
                 <input type="text" class="form-control rounded-start-2" placeholder="Глобальный поиск"
@@ -19,7 +19,7 @@ return function (int $productsCount, $offset, $count, $query, $sortBy) {
         </div>
     </div>
     <div class="row mx-auto">
-        <div class="col col-md-7 mx-auto">
+        <div class="col col-md-7 col-xxl-9 mx-auto">
             <div class="row mb-2">
                 <div class="col">
                     <div class="input-group input-group-sm">
@@ -50,7 +50,7 @@ return function (int $productsCount, $offset, $count, $query, $sortBy) {
         </div>
     </div>
     <div class="row mx-auto">
-        <div class="col col-md-7 mx-auto">
+        <div class="col col-md-7 col-xxl-9 mx-auto">
             <div class="row py-1">
                 <div class="col">
                     <div class="input-group input-group-sm">
@@ -68,7 +68,7 @@ return function (int $productsCount, $offset, $count, $query, $sortBy) {
         </div>
     </div>
     <div class="row mx-auto">
-        <div class="col col-md-7 mx-auto overflow-x-auto">
+        <div class="col col-md-7 col-xxl-9 mx-auto overflow-x-auto">
             <table class="table table-bordered text-center overflow-auto mb-2">
                 <thead>
                 <tr>
