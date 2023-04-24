@@ -4,11 +4,11 @@ namespace App\Pages;
 
 class RenderProducts extends RenderingPage
 {
-    private array $products;
+    private array $productsResponse;
 
-    public function setParams(array $products): self
+    public function setParams(array $productsResponse): self
     {
-        $this->products = $products;
+        $this->productsResponse = $productsResponse;
 
         return $this;
     }
@@ -19,7 +19,11 @@ class RenderProducts extends RenderingPage
         $this->rendering->setExtraScripts($this->createProductsJs() . $this->createAppJs());
         $this->rendering->setContent(LoadComponent::load(
             $this->viewsPath . DIRECTORY_SEPARATOR . 'products.php',
-            $this, $this->products
+            $this, $this->productsResponse['count'],
+            $this->productsResponse['search']['offset'],
+            $this->productsResponse['search']['count'],
+            $this->productsResponse['search']['query'],
+            $this->productsResponse['search']['sortBy'],
         ));
         $this->rendering->render();
     }
@@ -27,12 +31,12 @@ class RenderProducts extends RenderingPage
     private function createProductsJs(): string
     {
         return '<script>
-                    const FOUND_PRODUCTS = \'' . json_encode($this->products) . '\'
+                    const FOUND_PRODUCTS_JSON = \'' . json_encode($this->productsResponse) . '\'
                 </script>';
     }
 
     private function createAppJs(): string
     {
-        return '<script src="js/index.js"></script>';
+        return '<script type="module" src="js/index.js"></script>';
     }
 }
