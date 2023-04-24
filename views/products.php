@@ -60,7 +60,8 @@ return function (int $productsCount, $offset, $count, $query, $sortBy) {
                 </div>
                 <div class="col align-self-center">
                     <div class="text-end ">
-                        Всего: <span class="fw-bold"><?= $productsCount ?></span>
+                        Показано: <span class="fw-bold" id="productsSelectionCounter"><?= $productsCount ?></span>
+                        / <span class="fw-bold"><?= $productsCount ?></span>
                     </div>
                 </div>
             </div>
