@@ -1,5 +1,5 @@
 <?php
-return function (int $productsCount, $offset, $count, $query, $sortBy) {
+return function (int $productsCount, int $offset, int $count, ?string $query, ?array $sortBy) {
     ?>
     <div class="row mx-auto">
         <div class="col col-md-7 col-xxl-9 mx-auto text-center">
