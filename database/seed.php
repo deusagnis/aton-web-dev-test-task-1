@@ -8,8 +8,14 @@ use MGGFLOW\ExceptionManager\ManageException;
 
 require_once dirname(__DIR__) . DIRECTORY_SEPARATOR . 'bootstrap.php';
 
+/**
+ * Минимальное количество продуктов.
+ */
 const MIN_PRODUCTS_COUNT = 50;
 
+/**
+ * Заполнить таблицу случайными тестовыми данными.
+ */
 try {
     LoadEnv::load(ROOT_DIR);
     $conf = CreateConfig::create(ROOT_DIR . DIRECTORY_SEPARATOR . 'config');

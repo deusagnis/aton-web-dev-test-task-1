@@ -5,8 +5,16 @@ namespace App\Config;
 use League\Config\Configuration;
 use Nette\Schema\Expect;
 
+/**
+ * Определить и создать конфигурацию приложения.
+ */
 class CreateConfig
 {
+    /**
+     * Создать экземпляр конфигурации.
+     * @param string $configDir Путь к директории с файлами конфигурации.
+     * @return Configuration Экземпляр конифигурации приложения.
+     */
     public static function create(string $configDir): Configuration
     {
         $conf = new Configuration([

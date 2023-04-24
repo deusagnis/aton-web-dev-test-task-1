@@ -6,11 +6,24 @@ use App\Models\Product;
 use Medoo\Medoo;
 use MGGFLOW\ExceptionManager\ManageException;
 
+/**
+ * Поиск продуктов в БД по переданным GET параметрам.
+ */
 class FindProducts
 {
+    /**
+     * Доступные значения для количества выборки Продуктов из БД.
+     */
     const AVAILABLE_COUNTS = [10, 15, 25];
 
+    /**
+     * Минимальный количественный отступ выбора Продуктов из БД.
+     */
     const MIN_PRODUCTS_OFFSET = 0;
+
+    /**
+     * Максимальная длина подстроки поиска Продуктов.
+     */
     const MAX_QUERY_LENGTH = 512;
 
     private Medoo $connection;
@@ -19,11 +32,20 @@ class FindProducts
     private ?int $productsCount;
     private ?array $products;
 
+    /**
+     * Инициализировать поиск.
+     * @param Medoo $connection Экземпляр фасада соединения с БД.
+     */
     public function __construct(Medoo $connection)
     {
         $this->connection = $connection;
     }
 
+    /**
+     * Найти Продукты в БД.
+     * @return array Массив результата поиска [count: всего найдено, items: продукты, search: параметры поиска]
+     * @throws \MGGFLOW\ExceptionManager\Interfaces\UniException
+     */
     public function find(): array
     {
         $this->parseParams();
@@ -107,6 +129,7 @@ class FindProducts
 
     private function loadProducts()
     {
+        // TODO: Возможно добавление кеширования для снижения нагрузки на БД.
         $where = [
             'LIMIT' => [$this->searchParams['offset'], $this->searchParams['count']]
         ];

@@ -2,10 +2,18 @@
 
 namespace App\Pages;
 
+/**
+ * Отобразить страницу Продуктов (Товаров).
+ */
 class RenderProducts extends RenderingPage
 {
     private array $productsResponse;
 
+    /**
+     * Установить параметры страницы.
+     * @param array $productsResponse Массив ответа полученных продуктов из БД.
+     * @return $this
+     */
     public function setParams(array $productsResponse): self
     {
         $this->productsResponse = $productsResponse;
@@ -13,12 +21,16 @@ class RenderProducts extends RenderingPage
         return $this;
     }
 
+    /**
+     * Отобразить страницу продуктов.
+     * @return void
+     */
     public function render()
     {
         $this->rendering->setTitle('Aton Products');
         $this->rendering->setExtraScripts($this->createProductsJs() . $this->createAppJs());
         $this->rendering->setContent(LoadComponent::load(
-            $this->viewsPath . DIRECTORY_SEPARATOR . 'products.php',
+            $this->viewsDir . DIRECTORY_SEPARATOR . 'products.php',
             $this, $this->productsResponse['count'],
             $this->productsResponse['search']['offset'],
             $this->productsResponse['search']['count'],

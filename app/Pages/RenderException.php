@@ -4,11 +4,20 @@ namespace App\Pages;
 
 use Throwable;
 
+/**
+ * Отображает страницу со случившемся исключением.
+ */
 class RenderException extends RenderingPage
 {
     private Throwable $throwable;
     private bool $debug;
 
+    /**
+     * Установить параметры страницы.
+     * @param Throwable $throwable Отображаемое исключение.
+     * @param bool $debug Флаг режима отладки.
+     * @return $this
+     */
     public function setParams(Throwable $throwable, bool $debug): self
     {
         $this->throwable = $throwable;
@@ -17,6 +26,10 @@ class RenderException extends RenderingPage
         return $this;
     }
 
+    /**
+     * Отобразить пользователю страницу с ошибкой.
+     * @return void
+     */
     public function render()
     {
         $this->setTitle();
@@ -33,7 +46,7 @@ class RenderException extends RenderingPage
     private function setContent()
     {
         $this->rendering->setContent(LoadComponent::load(
-            $this->viewsPath . DIRECTORY_SEPARATOR . 'exception.php',
+            $this->viewsDir . DIRECTORY_SEPARATOR . 'exception.php',
             $this,
             $this->throwable,
             $this->debug

@@ -8,7 +8,13 @@ import ProvidePagination from "./ProvidePagination.js";
 import ProvideLocalPriceSorting from "./ProvideLocalPriceSorting.js";
 import ProvideCurrentSelectionCounter from "./ProvideCurrentSelectionCounter.js";
 
+/**
+ * Класс, соствляющий логику работы страницы из описанных кейсов.
+ */
 export default class App {
+    /**
+     * Запустить приложение.
+     */
     run() {
         const pageState = new ProductsPageState(
             'serverOffsetInput',

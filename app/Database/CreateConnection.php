@@ -5,8 +5,16 @@ namespace App\Database;
 use League\Config\Configuration;
 use Medoo\Medoo;
 
+/**
+ * Создание подключения к базе данных с помощью библиотеки Medoo.
+ */
 class CreateConnection
 {
+    /**
+     * Создать экземпляр фасада работы с БД на основе конфигурации.
+     * @param Configuration $config Экземпляр конфигурации приложения.
+     * @return Medoo Фасад работы с БД.
+     */
     public static function create(Configuration $config): Medoo
     {
         return new Medoo([

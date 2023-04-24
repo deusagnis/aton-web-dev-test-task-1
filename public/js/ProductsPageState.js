@@ -1,3 +1,8 @@
+/**
+ * Хранилище состояния приложения.
+ * Состояние содержит параметры поиска продуктов, которые могут менятьтся
+ * по мере работы приложения.
+ */
 export default class ProductsPageState {
     _serverOffsetInputId
     _globalSearchInputId
@@ -17,6 +22,13 @@ export default class ProductsPageState {
     _initialParse
     _needResetOffset = false
 
+    /**
+     * Инициализировать состояние приложения.
+     * @param serverOffsetInputId Идентификатор скрытого поля, хранящего использованный сервером offset.
+     * @param globalSearchInputId Идентификатор поля ввода запроса для глобального поиска продуктов по названию.
+     * @param priceSortingSelectId Идентификатор списка выбора сортировки цены при глобальном поиске.
+     * @param countSelectId Идентификатор списка выбора количества продуктов на странице.
+     */
     constructor(serverOffsetInputId, globalSearchInputId, priceSortingSelectId, countSelectId) {
         this._serverOffsetInputId = serverOffsetInputId
         this._globalSearchInputId = globalSearchInputId
@@ -24,6 +36,10 @@ export default class ProductsPageState {
         this._countSelectId = countSelectId
     }
 
+    /**
+     * Спарсить со страницы данные состояние приложения.
+     * @param initialParse Флаг первичного определения состояния.
+     */
     parse(initialParse = false) {
         this._initialParse = initialParse
         this._findElements()
@@ -31,19 +47,35 @@ export default class ProductsPageState {
         this._correctOffset()
     }
 
+    /**
+     * Сгенерировать строку запроса к странице с текущим состоянием.
+     * @returns {string}
+     */
     genQuery() {
         const params = new URLSearchParams(this._genQueryState());
         return params.toString();
     }
 
+    /**
+     * Установить значения offset для поиска продуктов.
+     * @param offset Отступ при поиске продуктов.
+     */
     setOffset(offset) {
         this._offset = offset
     }
 
+    /**
+     * Получить текущее количество продуктов, отображаемых на странице.
+     * @returns {number}
+     */
     getCount() {
         return this._count
     }
 
+    /**
+     * Получить текущий отсуп поиска продуктов.
+     * @returns {number} Текущий отступ поиска продуктов.
+     */
     getOffset() {
         return this._offset
     }

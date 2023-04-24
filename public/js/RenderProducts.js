@@ -1,3 +1,6 @@
+/**
+ * Кейс отображения продуктов.
+ */
 export default class RenderProducts {
 
     _tableBodyId
@@ -5,12 +8,20 @@ export default class RenderProducts {
     _tableBody
     _productCounter
 
+    /**
+     * Инициализировать отображение продуктов.
+     * @param tableBodyId Идентификатор тела таблицы продуктов.
+     */
     constructor(tableBodyId) {
         this._tableBodyId = tableBodyId
 
         this.render = this.render.bind(this)
     }
 
+    /**
+     * Отобразить продукты (Используется в качестве callback).
+     * @param products
+     */
     render(products) {
         this._tableBody = document.getElementById(this._tableBodyId)
         this._tableBody.innerHTML = ""

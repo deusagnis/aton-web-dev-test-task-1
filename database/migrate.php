@@ -8,6 +8,9 @@ use MGGFLOW\ExceptionManager\ManageException;
 
 require_once dirname(__DIR__) . DIRECTORY_SEPARATOR . 'bootstrap.php';
 
+/**
+ * Создать таблицу продуктов в БД, если она отсутствует.
+ */
 try {
     LoadEnv::load(ROOT_DIR);
     $conf = CreateConfig::create(ROOT_DIR . DIRECTORY_SEPARATOR . 'config');

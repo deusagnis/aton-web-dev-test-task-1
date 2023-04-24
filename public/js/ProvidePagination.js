@@ -1,6 +1,23 @@
+/**
+ * Обеспечить логику работы пагинации.
+ */
 export default class ProvidePagination {
+    /**
+     * Имя класса для определения ссылок выбора страницы.
+     * @type {string}
+     */
     paginationPageClass = 'paginationPage'
+
+    /**
+     * Минимальный номер страницы.
+     * @type {number}
+     */
     minPage = 1
+    /**
+     * Радиус полосы отображения номеров страниц относительно текущей
+     * (Макс. кол-во отображаемых страниц до и после текущей).
+     * @type {number}
+     */
     pageBandwidth = 3
 
     _paginationId
@@ -10,6 +27,12 @@ export default class ProvidePagination {
     _currentPage
     _maxPage
 
+    /**
+     * Инициализировать логику работы пагинации.
+     * @param paginationId Идентификатор блока вывода номеро страниц пагинации.
+     * @param pageState Экземпляр состояния приложения.
+     * @param totalCount Общее количество найденных продуктов.
+     */
     constructor(paginationId, pageState, totalCount) {
         this._paginationId = paginationId
         this._pageState = pageState
@@ -18,6 +41,9 @@ export default class ProvidePagination {
         this._onClickPage = this._onClickPage.bind(this)
     }
 
+    /**
+     * Обеспечить работу пагинации.
+     */
     provide() {
         this._calcCurrentPage()
         this._calcMaxPage()
