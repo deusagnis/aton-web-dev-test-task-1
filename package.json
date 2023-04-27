@@ -1,0 +1,28 @@
+{
+  "name": "test_task",
+  "version": "1.0.0",
+  "description": "",
+  "main": "webpack.config.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "npx webpack && uglifyjs ./public/js/dist/app.js -c -m --mangle-props regex=/^_/ -o ./public/js/dist/app.min.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/deusagnis/aton-web-dev-test-task-1.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/deusagnis/aton-web-dev-test-task-1/issues"
+  },
+  "homepage": "https://github.com/deusagnis/aton-web-dev-test-task-1#readme",
+  "devDependencies": {
+    "webpack": "^5.80.0",
+    "webpack-cli": "^5.0.2",
+    "uglify-js": "^3.17.4"
+  },
+  "dependencies": {
+  }
+}

@@ -3,4 +3,12 @@
 
 # Ignore packages directory
 vendor
+
+# Ignore NodeJS modules
+node_modules
+
+# Ignore env vars
 .env
+
+# Ignore UI build
+public/js/dist

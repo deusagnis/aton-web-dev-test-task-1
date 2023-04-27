@@ -20,6 +20,7 @@ class CreateConfig
         $conf = new Configuration([
             'app' => Expect::structure([
                 'debug' => Expect::bool()->default(false),
+                'prod' => Expect::bool()->default(true),
             ]),
             'database' => Expect::structure([
                 'type' => Expect::anyOf('mysql', 'postgresql')->required(),

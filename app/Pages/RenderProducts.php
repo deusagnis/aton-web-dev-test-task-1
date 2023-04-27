@@ -8,15 +8,18 @@ namespace App\Pages;
 class RenderProducts extends RenderingPage
 {
     private array $productsResponse;
+    private string $uiFilePath;
 
     /**
      * Установить параметры страницы.
      * @param array $productsResponse Массив ответа полученных продуктов из БД.
+     * @param string $uiFilePath Путь к файлу клиентского приложения фронтенда.
      * @return $this
      */
-    public function setParams(array $productsResponse): self
+    public function setParams(array $productsResponse, string $uiFilePath): self
     {
         $this->productsResponse = $productsResponse;
+        $this->uiFilePath = $uiFilePath;
 
         return $this;
     }
@@ -49,6 +52,6 @@ class RenderProducts extends RenderingPage
 
     private function createAppJs(): string
     {
-        return '<script type="module" src="js/index.js"></script>';
+        return '<script type="module" src="' . $this->uiFilePath . '"></script>';
     }
 }

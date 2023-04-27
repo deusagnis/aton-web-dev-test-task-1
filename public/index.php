@@ -16,15 +16,17 @@ try {
     LoadEnv::load(ROOT_DIR);
     $conf = CreateConfig::create(ROOT_DIR . DIRECTORY_SEPARATOR . 'config');
     $connection = CreateConnection::create($conf);
+    $uiFilePath = $conf->get('app.prod') ? 'js/dist/app.min.js' : 'js/src/index.js';
 
     $search = new FindProducts($connection);
     $productsResponse = $search->find();
 
     $rendering = new RenderPage(VIEWS_PATH);
     $page = new RenderProducts(VIEWS_PATH, $rendering);
-    $page->setParams($productsResponse)->render();
+    $page->setParams($productsResponse, $uiFilePath)->render();
 
 } catch (Throwable $e) {
+    // header("HTTP/1.1 500 Internal Server Error");
     $rendering = new RenderPage(VIEWS_PATH);
     $page = new RenderException(
         VIEWS_PATH,
