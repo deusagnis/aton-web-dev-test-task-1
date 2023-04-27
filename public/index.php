@@ -7,6 +7,7 @@ use App\FindProducts;
 use App\Pages\RenderException;
 use App\Pages\RenderPage;
 use App\Pages\RenderProducts;
+use MGGFLOW\ExceptionManager\Interfaces\UniException;
 
 require_once dirname(__DIR__) . DIRECTORY_SEPARATOR . 'bootstrap.php';
 
@@ -24,13 +25,13 @@ try {
     $rendering = new RenderPage(VIEWS_PATH);
     $page = new RenderProducts(VIEWS_PATH, $rendering);
     $page->setParams($productsResponse, $uiFilePath)->render();
-
-} catch (Throwable $e) {
-    // header("HTTP/1.1 500 Internal Server Error");
+} catch (UniException $uniException) {
     $rendering = new RenderPage(VIEWS_PATH);
     $page = new RenderException(
         VIEWS_PATH,
         $rendering
     );
-    $page->setParams($e, (isset($conf)) ? $conf->get('app.debug') : false)->render();
+    $page->setParams($uniException, (isset($conf)) ? $conf->get('app.debug') : false)->render();
+} catch (Throwable $e) {
+    header("HTTP/1.1 500 Internal Server Error");
 }
