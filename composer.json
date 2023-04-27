@@ -14,6 +14,10 @@
             "role": "Developer"
         }
     ],
+    "scripts": {
+        "migrate": "php ./database/migrate.php",
+        "seed": "php ./database/seed.php"
+    },
     "require-dev": {
         "phpunit/phpunit": "^9.6"
     },
