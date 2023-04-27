@@ -18,7 +18,9 @@ return function (string $content, string $title = 'ATON-TEST', string $extraHead
     </div>
     <div class="row mx-auto">
         <div class="col-auto mx-auto small">
-            <a class="link-success" href="https://github.com/deusagnis/aton-web-dev-test-task-1">Source on GitHub</a>
+            <a class="link-success" target="_blank" href="https://github.com/deusagnis/aton-web-dev-test-task-1">
+                Source on GitHub
+            </a>
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
