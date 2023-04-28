@@ -15,6 +15,7 @@
         }
     ],
     "scripts": {
+        "test": "php ./vendor/phpunit/phpunit/phpunit",
         "migrate": "php ./database/migrate.php",
         "seed": "php ./database/seed.php"
     },
