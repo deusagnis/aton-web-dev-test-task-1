@@ -92,7 +92,7 @@ return function (int $productsCount, int $offset, int $count, ?string $query, ?a
         </div>
     </div>
     <div class="row mx-auto">
-        <div class="col-auto mx-auto">
+        <div class="col-auto mx-auto py-1">
             <nav aria-label="Products pagination">
                 <ul class="pagination" id="productsPagination">
                 </ul>
