@@ -21,6 +21,8 @@ class CreateConfig
             'app' => Expect::structure([
                 'debug' => Expect::bool()->default(false),
                 'prod' => Expect::bool()->default(true),
+                'publicPrefix' => Expect::string(),
+                'uiKey' => Expect::string(),
             ]),
             'database' => Expect::structure([
                 'type' => Expect::anyOf('mysql', 'postgresql')->required(),

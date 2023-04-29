@@ -7,6 +7,7 @@ use App\FindProducts;
 use App\Pages\RenderException;
 use App\Pages\RenderPage;
 use App\Pages\RenderProducts;
+use App\Routes\ResolveUIFile;
 use MGGFLOW\ExceptionManager\Interfaces\UniException;
 
 require_once dirname(__DIR__) . DIRECTORY_SEPARATOR . 'bootstrap.php';
@@ -17,7 +18,7 @@ try {
     LoadEnv::load(ROOT_DIR);
     $conf = CreateConfig::create(ROOT_DIR . DIRECTORY_SEPARATOR . 'config');
     $connection = CreateConnection::create($conf);
-    $uiFilePath = $conf->get('app.prod') ? 'js/dist/app.min.js' : 'js/src/index.js';
+    $uiFilePath = ResolveUIFile::resolve($conf);
 
     $search = new FindProducts($connection);
     $productsResponse = $search->find();
