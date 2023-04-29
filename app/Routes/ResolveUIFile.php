@@ -17,7 +17,8 @@ class ResolveUIFile
     public static function resolve(Configuration $conf): string
     {
         $path = $conf->get('app.prod') ? '/js/dist/app.min.js' : '/js/src/index.js';
-        $path = '/' . trim($conf->get('app.publicPrefix'), '/') . $path;
+        $prefix = trim($conf->get('app.publicPrefix'), '/');
+        $path = empty($prefix) ? $path : '/' . $prefix . $path;
         return $path . '?hk=' . md5($conf->get('app.uiKey'));
     }
 }
