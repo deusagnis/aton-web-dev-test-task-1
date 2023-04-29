@@ -1,0 +1,43 @@
+version: "3.7"
+services:
+    app:
+        build:
+            args:
+                user: sammy
+                uid: 1000
+            context: ./
+            dockerfile: Dockerfile
+        image: aton-web-dev-task1-app
+        container_name: aton-web-dev-t1-app
+        restart: on-failure
+        working_dir: /var/www/
+        volumes:
+            - ./:/var/www
+        networks:
+            - aton-web-dev-net
+    db:
+        environment:
+            - MARIADB_ROOT_PASSWORD=root
+        user: "1000:1000"
+        image: mariadb
+        container_name: aton-web-dev-t1-db
+        restart: on-failure
+        volumes:
+            - ./maria-db:/var/lib/mysql
+            - ./docker-compose/maria-db/init.sql:/docker-entrypoint-initdb.d/init.sql
+        networks:
+            - aton-web-dev-net
+    nginx:
+        image: nginx:alpine
+        container_name: aton-web-dev-t1-nginx
+        restart: on-failure
+        ports:
+            - "9100:80"
+        volumes:
+            - ./:/var/www
+            - ./docker-compose/nginx:/etc/nginx/conf.d/
+        networks:
+            - aton-web-dev-net
+networks:
+    aton-web-dev-net:
+        driver: bridge

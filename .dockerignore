@@ -1,0 +1,4 @@
+# Исключениe из сборки модулей NodeJS
+node_modules
+# Исключение из сборки библиотек Composer
+vendor
