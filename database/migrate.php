@@ -47,7 +47,7 @@ try {
         ->context($connection->last(), 'query')->b()
         ->fill();
 
-    echo 'Successful Database Migration';
+    echo 'Successful Database Migration' . PHP_EOL;
 } catch (Throwable $e) {
     if (method_exists($e, 'toArray')) {
         echo '<pre>' . json_encode($e->toArray(false)) . '</pre>';

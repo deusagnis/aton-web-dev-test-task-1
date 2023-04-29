@@ -49,7 +49,7 @@ try {
         ->context($connection->last(), 'query')->b()
         ->fill();
 
-    echo 'Successful Database Seeding';
+    echo 'Successful Database Seeding' . PHP_EOL;
 } catch (Throwable $e) {
     if (method_exists($e, 'toArray')) {
         echo '<pre>' . json_encode($e->toArray(false)) . '</pre>';
