@@ -1,8 +1,9 @@
 <?php
 
 use App\Pages\LoadComponent;
+use PHPUnit\Framework\TestCase;
 
-class LoadComponentTest extends \PHPUnit\Framework\TestCase
+class LoadComponentTest extends TestCase
 {
     private string $testViewPath;
     private int $summand;
